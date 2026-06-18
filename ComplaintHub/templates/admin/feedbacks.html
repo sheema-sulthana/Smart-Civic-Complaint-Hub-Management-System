@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Feedbacks</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/feedbacks.css') }}">
+
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+    <div class="logo-section">
+
+        <h1 style="font-size:x-large;">Complaint Hub</h1>
+
+        <p class="admin-text">
+            ADMIN DASHBOARD
+        </p>
+
+    </div>
+
+    <ul>
+
+        <li>
+
+            <a href="/admin-dashboard">
+
+                Dashboard
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="/admin/complaints">
+
+                Complaints
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="/admin/analytics">
+
+                Analytics
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="/admin/feedbacks" class="active">
+
+                Feedbacks
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="/admin/logout">
+
+                Logout
+
+            </a>
+
+        </li>
+
+    </ul>
+
+</div>
+
+<!-- MAIN CONTENT -->
+
+<div class="main-content">
+
+    <div class="page-title">
+
+        <h1>User Feedbacks</h1>
+
+        <p>
+            Citizens feedback and service reviews
+        </p>
+
+    </div>
+
+    <!-- FEEDBACK CARDS -->
+
+    <div class="feedback-grid">
+
+        {% for feedback in feedbacks %}
+
+        <div class="feedback-card">
+
+            <div class="feedback-top">
+
+                <div class="user-circle">
+
+                    👤
+
+                </div>
+
+                <div>
+
+                    <h3>{{ feedback[1] }}</h3>
+
+                    <span>{{ feedback[3] }}</span>
+
+                </div>
+
+            </div>
+
+            <div class="phone-number">
+
+                📞 {{ feedback[2] }}
+
+            </div>
+
+            <p>
+
+                {{ feedback[4] }}
+
+            </p>
+
+            <div class="rating">
+
+    {% if feedback[5]|lower == 'excellent' %}
+
+        ⭐⭐⭐⭐⭐
+
+    {% elif feedback[5]|lower == 'good' %}
+
+        ⭐⭐⭐⭐☆
+
+    {% elif feedback[5]|lower == 'average' %}
+
+        ⭐⭐⭐☆☆
+
+    {% elif feedback[5]|lower == 'poor' %}
+
+        ⭐⭐☆☆☆
+
+    {% else %}
+
+        ⭐☆☆☆☆
+
+    {% endif %}
+
+</div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

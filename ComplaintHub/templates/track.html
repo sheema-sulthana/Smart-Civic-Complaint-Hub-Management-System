@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Track Complaints</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/track.css') }}">
+          <script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+        {
+            pageLanguage: 'en',
+            includedLanguages: 'en,hi,te',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        },
+        'google_translate_element'
+    );
+}
+</script>
+
+<script type="text/javascript"
+src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+</script>
+
+</head>
+
+<body>
+
+<div class="track-container">
+
+    <!-- HEADER -->
+
+    <div class="top-bar">
+
+        <h1>Track Your Complaints</h1>
+
+        <a href="/" class="home-btn">
+            Back to Home
+        </a>
+
+    </div>
+
+    <!-- SEARCH FORM -->
+
+    <div class="search-card">
+
+        <h2>Search by Phone Number</h2>
+
+        <form method="POST">
+
+            <input
+    type="tel"
+    id="phone"
+    name="phone"
+    maxlength="10"
+    pattern="[0-9]{10}"
+    placeholder="Enter your 10-digit phone number"
+    required
+>
+
+            <button type="submit">
+                Track Complaints
+            </button>
+
+        </form>
+
+    </div>
+
+    <!-- RESULTS -->
+
+    {% if complaints %}
+
+    <div class="complaints-grid">
+
+        {% for complaint in complaints %}
+
+        <div class="complaint-card">
+
+            <!-- IMAGE -->
+
+            <div class="complaint-image">
+
+                {% if complaint[7] %}
+
+                <img src="{{ url_for('static',
+                        filename='uploads/' + complaint[7]) }}">
+
+                {% else %}
+
+                <img src="{{ url_for('static',
+                        filename='images/default.jpg') }}">
+
+                {% endif %}
+
+            </div>
+
+            <!-- CONTENT -->
+
+            <div class="complaint-content">
+
+                <div class="tags">
+
+                    {% if complaint[8] == 'Pending' %}
+
+                    <span class="status pending">
+                        Pending
+                    </span>
+
+                    {% elif complaint[8] == 'In Progress' %}
+
+                    <span class="status progress">
+                        In Progress
+                    </span>
+
+                    {% else %}
+
+                    <span class="status resolved">
+                        Resolved
+                    </span>
+                    
+
+                    {% endif %}
+
+                    {% if complaint[9] == 'High' %}
+
+                    <span class="priority high">
+                        High Priority
+                    </span>
+
+                    {% elif complaint[9] == 'Medium' %}
+
+                    <span class="priority medium">
+                        Medium Priority
+                    </span>
+
+                    {% else %}
+
+                    <span class="priority low">
+                        Low Priority
+                    </span>
+
+                    {% endif %}
+
+                </div>
+                <p>
+
+    <strong>Date & Time:</strong>
+
+    {{ complaint[10] }}
+
+</p>
+                <h2>{{ complaint[3] }}</h2>
+
+                <p class="location">
+                    📍 {{ complaint[6] }}
+                </p>
+
+                <p class="description">
+                    {{ complaint[4] }}
+                </p>
+
+                <div class="info">
+
+                    <p>
+                        <strong>Complaint ID:</strong>
+                        #{{ complaint[0] }}
+                    </p>
+
+                    <p>
+                        <strong>Name:</strong>
+                        {{ complaint[1] }}
+                    </p>
+
+                    <p>
+                        <strong>Phone:</strong>
+                        {{ complaint[2] }}
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    {% elif request.method == 'POST' %}
+
+    <div class="no-results">
+
+        No complaints found for this phone number.
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+
+</html>

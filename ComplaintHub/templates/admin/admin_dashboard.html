@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+    <!-- CHART JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- LEAFLET MAP -->
+    <link rel="stylesheet"
+          href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo-section">
+
+            <h1 style="font-size:x-large;">Complaint Hub</h1>
+
+            <p class="admin-text">
+                ADMIN DASHBOARD
+            </p>
+
+        </div>
+
+        <nav>
+
+            <ul>
+
+                <li>
+                    <a href="{{ url_for('admin_dashboard') }}"
+                       class="active">
+                        Dashboard
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url_for('admin_complaints') }}">
+                        Complaints
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url_for('analytics') }}">
+                        Analytics
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url_for('feedbacks') }}">
+                        Feedbacks
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url_for('home') }}">
+                        Logout
+                    </a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+    </aside>
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+        <!-- TOP CARDS -->
+
+        <div class="top-cards">
+
+            <div class="card total-card">
+
+                <h3>Total Complaints</h3>
+
+                <h1>{{ total }}</h1>
+
+            </div>
+
+            <div class="card pending-card">
+
+                <h3>Pending</h3>
+
+                <h1>{{ pending }}</h1>
+
+            </div>
+
+            <div class="card progress-card">
+
+                <h3>In Progress</h3>
+
+                <h1>{{ progress }}</h1>
+
+            </div>
+
+            <div class="card resolved-card">
+
+                <h3>Resolved</h3>
+
+                <h1>{{ resolved }}</h1>
+
+            </div>
+
+        </div>
+
+        <!-- CHARTS -->
+
+        <div class="charts-container">
+
+            <div class="chart-card">
+
+                <h2>Complaint Status Overview</h2>
+
+                <div class="chart-box">
+
+                    <canvas id="statusChart"></canvas>
+
+                </div>
+
+            </div>
+
+            <div class="chart-card">
+
+                <h2>Weekly Complaint Trend</h2>
+
+                <div class="chart-box">
+
+                    <canvas id="trendChart"></canvas>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- MAP -->
+
+        <div class="map-card">
+
+            <h2 style="margin-bottom:20px;">
+                Complaint Locations
+            </h2>
+
+            <div id="complaintMap"></div>
+
+        </div>
+
+        <!-- TABLE -->
+
+        <div class="table-section">
+
+            <h2>Recent Complaints</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Area</th>
+                        <th>Status</th>
+                        <th>Priority</th>
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                {% for complaint in complaints %}
+
+                    <tr>
+
+                        <td>#{{ complaint[0] }}</td>
+
+                        <td>{{ complaint[1] }}</td>
+
+                        <td>{{ complaint[3] }}</td>
+
+                        <td>{{ complaint[6] }}</td>
+
+                        <!-- STATUS -->
+
+                        <td>
+
+                            {% if complaint[8] == 'Pending' %}
+
+                                <span class="status pending">
+                                    Pending
+                                </span>
+
+                            {% elif complaint[8] == 'In Progress' %}
+
+                                <span class="status progress">
+                                    In Progress
+                                </span>
+
+                            {% else %}
+
+                                <span class="status resolved">
+                                    Resolved
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+                        <!-- PRIORITY -->
+
+                        <td>
+
+                            {% if complaint[9] == 'High' %}
+
+                                <span class="priority high">
+                                    High
+                                </span>
+
+                            {% elif complaint[9] == 'Medium' %}
+
+                                <span class="priority medium">
+                                    Medium
+                                </span>
+
+                            {% else %}
+
+                                <span class="priority low">
+                                    Low
+                                </span>
+
+                            {% endif %}
+
+                        </td>
+
+
+                        
+
+                        <!-- ACTION -->
+
+                        <td>
+
+                            <a href="/complaint/{{ complaint[0] }}"
+                               class="view-btn">
+
+                                View
+
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </main>
+
+</div>
+
+<!-- STATUS CHART -->
+
+<script>
+
+const ctx1 = document.getElementById('statusChart');
+
+new Chart(ctx1, {
+
+    type: 'doughnut',
+
+    data: {
+
+        labels: ['Pending', 'In Progress', 'Resolved'],
+
+        datasets: [{
+
+            data: [
+                {{ pending }},
+                {{ progress }},
+                {{ resolved }}
+            ],
+
+            backgroundColor: [
+
+                '#f59e0b',
+                '#2196f3',
+                '#4caf50'
+
+            ],
+
+            borderWidth:0
+
+        }]
+
+    },
+
+    options:{
+
+        responsive:true,
+
+        maintainAspectRatio:false
+
+    }
+
+});
+
+</script>
+
+<!-- TREND CHART -->
+
+<script>
+
+const trendCtx = document.getElementById('trendChart');
+
+new Chart(trendCtx, {
+
+    type: 'line',
+
+    data: {
+
+        labels: [
+            'Mon',
+            'Tue',
+            'Wed',
+            'Thu',
+            'Fri',
+            'Sat',
+            'Sun'
+        ],
+
+        datasets: [{
+
+            label: 'Complaints',
+
+            data: {{ weekly_counts | tojson }},
+
+            borderColor: '#14b8a6',
+
+            tension: 0.4,
+
+            fill: false
+
+        }]
+
+    },
+
+    options: {
+
+        responsive: true
+
+    }
+
+});
+
+</script>
+
+<!-- MAP -->
+
+<script>
+
+    // CREATE MAP
+
+    var map = L.map('complaintMap').setView([14.45, 79.98], 11);
+
+    // MAP LAYER
+
+    L.tileLayer(
+
+        'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+
+        {
+
+            attribution:
+            '&copy; OpenStreetMap contributors'
+
+        }
+
+    ).addTo(map);
+
+    // GET LOCATIONS FROM FLASK
+
+    var locations = {{ map_locations | tojson }};
+
+    // LOOP ALL COMPLAINTS
+
+    locations.forEach(function(loc){
+
+        let markerColor = "blue";
+
+        if(loc.status == "Pending"){
+
+            markerColor = "red";
+
+        }
+
+        else if(loc.status == "In Progress"){
+
+            markerColor = "orange";
+
+        }
+
+        else if(loc.status == "Resolved"){
+
+            markerColor = "green";
+
+        }
+
+        // CUSTOM ICON
+
+        var customIcon = L.icon({
+
+            iconUrl:
+
+            "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-"
+
+            + markerColor +
+
+            ".png",
+
+            shadowUrl:
+
+            "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
+
+            iconSize: [25, 41],
+
+            iconAnchor: [12, 41],
+
+            popupAnchor: [1, -34],
+
+            shadowSize: [41, 41]
+
+        });
+
+        // CREATE MARKER
+
+        L.marker(
+
+            [loc.lat, loc.lng],
+
+            { icon: customIcon }
+
+        )
+
+        .addTo(map)
+
+        .bindPopup(`
+
+            <div style="min-width:250px;">
+
+                <h3 style="
+                    margin-bottom:10px;
+                    color:#10b981;
+                    font-size:18px;
+                ">
+
+                    ${loc.category}
+
+                </h3>
+
+                <p style="margin-bottom:6px;">
+
+                    <b>👤 Name:</b>
+
+                    ${loc.name}
+
+                </p>
+
+                <p style="margin-bottom:6px;">
+
+                    <b>📍 Area:</b>
+
+                    ${loc.area}
+
+                </p>
+
+                <p style="margin-bottom:6px;">
+
+                    <b>📌 Status:</b>
+
+                    ${loc.status}
+
+                </p>
+
+                <p style="margin-bottom:6px;">
+
+                    <b>🕒 Date:</b>
+
+                    ${loc.date}
+
+                </p>
+
+            </div>
+
+        `);
+
+    });
+
+</script>
+
+</body>
+</html>

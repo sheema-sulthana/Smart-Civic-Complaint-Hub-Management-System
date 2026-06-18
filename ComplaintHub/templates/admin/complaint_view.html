@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Complaints</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/complaint_details.css') }}">
+
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <!-- SIDEBAR -->
+
+    <div class="sidebar">
+
+        <div class="logo-section">
+
+            <h1 style="font-size:x-large;">Complaint Hub</h1>
+
+            <p class="admin-text">
+                ADMIN DASHBOARD
+            </p>
+
+        </div>
+
+        <ul>
+
+            <li>
+                <a href="/admin-dashboard">
+                    Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="/admin/complaints" class="active">
+                    Complaints
+                </a>
+            </li>
+
+            <li>
+                <a href="/admin/analytics">
+                    Analytics
+                </a>
+            </li>
+
+            <li>
+                <a href="/admin/feedbacks">
+                    Feedbacks
+                </a>
+            </li>
+
+            <li>
+                <a href="/admin/logout">
+                    Logout
+                </a>
+            </li>
+
+        </ul>
+
+    </div>
+
+
+    <!-- MAIN -->
+
+    <div class="main-content">
+
+        <div class="top-bar">
+
+            <h2>Complaint Details</h2>
+
+            <a href="/admin-dashboard"
+            class="back-btn">
+
+            ← Back
+
+            </a>
+
+        </div>
+
+        <div class="complaint-view-card">
+
+            <!-- IMAGE -->
+
+<div class="complaint-image-wrapper">
+
+    {% if complaint[7] %}
+
+    <img src="{{ url_for('static', filename='uploads/' + complaint[7]) }}"
+     alt="Complaint Image"
+     class="complaint-img">
+
+    {% else %}
+
+    <img src="{{ url_for('static', filename='images/no-image.png') }}"
+         alt="No Image"
+         class="complaint-img">
+
+    {% endif %}
+
+</div>
+
+<!-- DETAILS -->
+
+<div class="complaint-details">
+
+    <div class="badges">
+
+        <!-- STATUS -->
+
+        <span class="status-badge
+
+        {% if complaint[8] == 'Pending' %}
+            pending
+        {% elif complaint[8] == 'In Progress' %}
+            progress
+        {% else %}
+            resolved
+        {% endif %}
+
+        ">
+
+            {{ complaint[8] }}
+
+        </span>
+
+        <!-- PRIORITY -->
+
+        <span class="priority-badge
+
+        {% if complaint[9] == 'High' %}
+            high
+        {% elif complaint[9] == 'Medium' %}
+            medium
+        {% else %}
+            low
+        {% endif %}
+
+        ">
+
+            {{ complaint[9] }}
+
+        </span>
+
+    </div>
+
+                <h1>{{ complaint[3] }}</h1>
+
+                <div class="detail-box">
+
+                    <h3>User Information</h3>
+
+                    <p>
+
+                        <strong>Name:</strong>
+
+                        {{ complaint[1] }}
+
+                    </p>
+
+                    <p>
+
+                        <strong>Phone:</strong>
+
+                        {{ complaint[2] }}
+
+                    </p>
+
+                </div>
+
+                <div class="detail-box">
+
+                    <h3>Complaint Information</h3>
+
+                    <p>
+
+                        <strong>Category:</strong>
+
+                        {{ complaint[3] }}
+
+                    </p>
+
+                    <p>
+
+                        <strong>Description:</strong>
+
+                        {{ complaint[4] }}
+
+                    </p>
+                    <p>
+
+                        <strong>Location:</strong>
+
+                        {{ complaint[5] }}
+                    </p>
+                    <div class="info-row">
+
+    <strong>Date & Time:</strong>
+
+    <span>
+
+        {{ complaint[10] }}
+
+    </span>
+
+</div>
+
+                    
+                </div>
+
+                <!-- ACTION BUTTONS -->
+
+                <div class="action-buttons">
+
+                    <a href="https://www.google.com/maps/search/{{ complaint[5] }}"
+                    target="_blank"
+                    class="map-btn">
+
+                    Open Maps
+
+                    </a>
+
+                    <a href="/update-status/{{ complaint[0] }}/Pending"
+                    class="pending-btn">
+
+                    Pending
+
+                    </a>
+
+                    <a href="/update-status/{{ complaint[0] }}/In Progress"
+                    class="progress-btn">
+
+                    In Progress
+
+                    </a>
+
+                    <a href="/update-status/{{ complaint[0] }}/Resolved"
+                    class="resolved-btn">
+
+                    Resolved
+
+                    </a>
+
+                    <a href="/delete-complaint/{{ complaint[0] }}"
+                    class="delete-btn">
+
+                    Delete
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

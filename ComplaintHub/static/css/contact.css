@@ -1,0 +1,525 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#f5f7fb;
+    color:#0f172a;
+}
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+    width:100%;
+    background:#fff;
+    padding:18px 80px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid #e5e7eb;
+}
+
+.logo-section{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.logo-icon{
+    width:56px;
+    height:56px;
+    border-radius:18px;
+    background:#10b981;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28px;
+}
+
+.logo-section h1{
+    font-size:28px;
+    color:#0f172a;
+    margin:0;
+    font-weight:800;
+}
+
+.logo-section p{
+    margin:0;
+    letter-spacing:6px;
+    color:#64748b;
+    font-size:13px;
+}
+
+nav{
+    display:flex;
+    gap:40px;
+}
+
+nav a{
+    text-decoration:none;
+    color:#0f172a;
+    font-weight:600;
+    font-size:18px;
+}
+
+nav a:hover{
+    color:#10b981;
+}
+
+.admin-btn{
+    background:#10b981;
+    color:white;
+    padding:16px 30px;
+    border-radius:16px;
+    text-decoration:none;
+    font-weight:700;
+}
+.goog-te-combo{
+
+    width:140px;
+
+    height:42px;
+
+    padding:0 10px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#f5f7fa;
+
+    color:#111827;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    font-family:'Poppins',sans-serif;
+
+    outline:none;
+
+    cursor:pointer;
+
+}
+
+/* REMOVE EXTRA GOOGLE TEXT */
+
+.goog-te-gadget{
+    font-size:0 !important;
+}
+
+.goog-te-gadget span{
+    display:none !important;
+}
+
+.goog-logo-link{
+    display:none !important;
+}
+/* =====================================================
+RESPONSIVE
+===================================================== */
+
+
+
+/* =====================================================
+HERO SECTION
+===================================================== */
+
+.hero{
+    background:#10b981;
+    color:white;
+    text-align:center;
+    padding:45px 0px;
+}
+
+.hero h1{
+    font-size:60px;
+    font-weight:600;
+    margin-bottom:20px;
+}
+
+.hero p{
+    font-size:24px;
+    font-weight:400;
+}
+
+/* =====================================================
+CONTACT CONTAINER
+===================================================== */
+
+.contact-container{
+    width:85%;
+    margin:60px auto;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:35px;
+}
+
+/* =====================================================
+CARDS
+===================================================== */
+
+.contact-form,
+.contact-info{
+    background:white;
+    padding:45px;
+    border-radius:22px;
+    box-shadow:0 6px 25px rgba(0,0,0,0.07);
+}
+
+.contact-form h2,
+.contact-info h2{
+    font-size:34px;
+    font-weight:800;
+    margin-bottom:18px;
+    line-height:1.3;
+}
+
+.contact-form p,
+.contact-info p{
+    color:#64748b;
+    line-height:1.8;
+    margin-bottom:25px;
+    font-size:17px;
+}
+
+/* =====================================================
+FORM
+===================================================== */
+
+.contact-form form{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+.contact-form label{
+    font-size:17px;
+    font-weight:600;
+    color:#111827;
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea{
+    width:100%;
+    padding:18px;
+    border:2px solid #d1d5db;
+    border-radius:12px;
+    font-size:17px;
+    outline:none;
+    transition:0.3s;
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus{
+    border-color:#10b981;
+}
+
+.contact-form textarea{
+    height:180px;
+    resize:none;
+}
+
+.contact-form button{
+    width:100%;
+    background:#10b981;
+    color:white;
+    border:none;
+    padding:18px;
+    border-radius:12px;
+    font-size:20px;
+    font-weight:700;
+    cursor:pointer;
+    margin-top:10px;
+    transition:0.3s;
+}
+
+.contact-form button:hover{
+    background:#059669;
+}
+
+/* =====================================================
+INFO BOXES
+===================================================== */
+
+.info-box{
+    background:#f8fafc;
+    padding:20px;
+    border-radius:16px;
+    margin-top:20px;
+    border:1px solid #e5e7eb;
+}
+
+.info-box h3{
+    font-size:24px;
+    margin-bottom:10px;
+    color:#0f172a;
+}
+
+.info-box p{
+    margin-bottom:8px;
+    font-size:17px;
+}
+.emergency{
+    background:#f74b2d;
+    padding:20px;
+    border-radius:16px;
+    border: 2px solid var(--error-color);
+    margin-top:20px;
+    border:1px solid #e5e7eb;
+}
+.emergency h3{
+    font-size:24px;
+    margin-bottom:10px;
+    color:#0f172a;
+}
+.emergency p{
+    margin-bottom:8px;
+            font-size:17px;
+}
+
+/* =====================================================
+RESPONSIVE
+===================================================== */
+
+@media(max-width:1100px){
+
+    .navbar{
+        flex-direction:column;
+        gap:25px;
+        padding:25px;
+    }
+
+    .nav-center{
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:20px;
+    }
+
+    .contact-container{
+        grid-template-columns:1fr;
+        width:92%;
+    }
+
+    .hero h1{
+        font-size:52px;
+    }
+}
+
+@media(max-width:700px){
+
+    .hero{
+        padding:70px 20px;
+    }
+
+    .hero h1{
+        font-size:40px;
+    }
+
+    .hero p{
+        font-size:18px;
+    }
+
+    .contact-form,
+    .contact-info{
+        padding:28px;
+    }
+
+    .contact-form h2,
+    .contact-info h2{
+        font-size:28px;
+    }
+
+    .logo-text h1{
+        font-size:28px;
+    }
+
+    .logo-icon{
+        width:55px;
+        height:55px;
+        font-size:26px;
+    }
+
+    .nav-center a{
+        font-size:16px;
+    }
+
+    .admin-btn{
+        padding:13px 22px;
+        font-size:16px;
+    }
+}
+/* =====================================================
+FAQ SECTION
+===================================================== */
+
+.faq-section{
+    width:60%;
+    margin:60px auto;
+    text-align:center;
+}
+
+.faq-section h1{
+    font-size:42px;
+    color:#0f172a;
+    margin-bottom:12px;
+    font-weight:800;
+}
+
+.faq-section p{
+    font-size:18px;
+    color:#64748b;
+    margin-bottom:35px;
+}
+
+/* =====================================================
+FAQ BOX
+===================================================== */
+
+.faq-container{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+.faq-box{
+    background:#ffffff;
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:0 4px 12px rgba(0,0,0,0.05);
+}
+
+.faq-question{
+    width:100%;
+    background:#ffffff;
+    border:none;
+    padding:22px 28px;
+    font-size:18px;
+    font-weight:700;
+    color:#0f172a;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.faq-question:hover{
+    background:#f8fafc;
+}
+
+/* DOWN ARROW */
+
+.faq-question span{
+    color:#10b981;
+    font-size:22px;
+    font-weight:700;
+    transition:0.3s;
+}
+
+/* =====================================================
+FAQ ANSWER
+===================================================== */
+
+.faq-answer{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height 0.4s ease;
+    background:#f8fafc;
+}
+
+.faq-answer p{
+    padding:0 28px 22px;
+    text-align:left;
+    font-size:16px;
+    color:#475569;
+    line-height:1.7;
+}
+
+/* =====================================================
+RESPONSIVE
+===================================================== */
+
+@media(max-width:900px){
+
+    .faq-section{
+        width:65%;
+    }
+
+    .faq-section h1{
+        font-size:32px;
+    }
+
+    .faq-question{
+        font-size:16px;
+        padding:18px 20px;
+    }
+
+    .faq-answer p{
+        font-size:15px;
+    }
+}
+/* VOICE BUTTON */
+
+.voice-input-box{
+    position:relative;
+}
+
+.voice-btn{
+
+    position:absolute;
+
+    right:20px;
+
+    bottom:20px;
+
+    width:120px !important;
+
+    height:42px;
+
+    padding:0 12px;
+
+    background:#10b981;
+
+    color:white;
+
+    border:none;
+
+    border-radius:10px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:0.3s;
+
+    z-index:10;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:6px;
+
+    white-space:nowrap;
+}
+
+.voice-btn:hover{
+    background:#059669;
+}
+
+#messageBox{
+    padding-bottom:80px;
+}

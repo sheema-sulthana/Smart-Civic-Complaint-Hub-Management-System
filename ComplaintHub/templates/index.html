@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ComplaintHub | Smart Civic</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+        {
+            pageLanguage: 'en',
+            includedLanguages: 'en,hi,te',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        },
+        'google_translate_element'
+    );
+}
+</script>
+
+<script type="text/javascript"
+src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+</script>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <header class="navbar">
+
+    <div class="logo-section">
+
+        <div class="logo-icon">
+            📢
+        </div>
+
+        <div>
+
+            <h1>Complaint Hub</h1>
+
+            <p>SMART CIVIC</p>
+
+        </div>
+
+    </div>
+
+    <nav>
+
+    <a href="{{ url_for('home') }}" data-translate="home">
+        Home
+    </a>
+
+    <a href="{{ url_for('home') }}#about" data-translate="about">
+        About
+    </a>
+
+    <a href="{{ url_for('gallery') }}" data-translate="gallery">
+        Gallery
+    </a>
+
+    <a href="{{ url_for('submit') }}" data-translate="report_issue">
+        Report Issue
+    </a>
+
+    <a href="{{ url_for('track') }}" data-translate="track">
+        Track Complaints
+    </a>
+
+    <a href="{{ url_for('contact') }}" data-translate="contact">
+        Contact
+    </a>
+    <div id="google_translate_element"></div>
+</nav>
+
+<script src="{{ url_for('static', filename='js/language.js') }}"></script>
+
+
+   <a href="{{ url_for('admin_login') }}" class="admin-btn">
+    Admin Login
+</a>
+
+
+</header>
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <h1>
+                Report Issues. Get Them
+                Resolved. Build a Cleaner,
+                Greener City Together.
+            </h1>
+
+            <p>
+                A smart platform that connects citizens and authorities
+                to resolve civic problems like potholes, garbage,
+                drainage, and streetlights with real-time updates
+                and full transparency.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="/report" class="primary-btn">
+                    <i class="fa-regular fa-file-lines"></i>
+                    Report an Issue Now
+                </a>
+
+                <a href="/track" class="secondary-btn">
+                    <i class="fa-regular fa-eye"></i>
+                    View Reported Issues
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- STATS -->
+
+        <div class="stats-container">
+
+            <div class="stat-card">
+                <h2>120</h2>
+                <p>Total Reports</p>
+            </div>
+
+            <div class="stat-card">
+                <h2>85</h2>
+                <p>Resolved</p>
+            </div>
+
+            <div class="stat-card">
+                <h2>25</h2>
+                <p>In Progress</p>
+            </div>
+
+            <div class="stat-card">
+                <h2>10</h2>
+                <p>Pending</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ABOUT -->
+
+    <section class="about-section" id="about">
+
+        <h2>
+            About Our <span>Mission</span>
+        </h2>
+
+        <p class="section-text">
+            Our Civic Issue Reporting & Resolution System is designed
+            under the theme of Clean & Green Technology.
+            It allows citizens to actively participate in making
+            their city better by reporting problems online.
+        </p>
+
+        <div class="about-grid">
+
+            <div class="about-card">
+                <i class="fa-regular fa-pen-to-square"></i>
+                <h3>Clean & Green</h3>
+                <p>
+                    Promoting environmental sustainability
+                    through technology-driven civic solutions.
+                </p>
+            </div>
+
+            <div class="about-card">
+                <i class="fa-solid fa-shield"></i>
+                <h3>Trust & Transparency</h3>
+                <p>
+                    Building accountability between citizens
+                    and authorities with full transparency.
+                </p>
+            </div>
+
+            <div class="about-card">
+                <i class="fa-solid fa-users"></i>
+                <h3>Community Driven</h3>
+                <p>
+                    Empowering citizens to actively participate
+                    in making their city better.
+                </p>
+            </div>
+
+            <div class="about-card">
+                <i class="fa-regular fa-circle-play"></i>
+                <h3>Efficient Resolution</h3>
+                <p>
+                    Streamlined processes ensure issues
+                    are resolved quickly and effectively.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- HOW IT WORKS -->
+
+    <section class="works-section">
+
+        <h2>
+            How It <span>Works</span>
+        </h2>
+
+        <p class="section-text">
+            Our streamlined process ensures your civic issues
+            are handled efficiently from report to resolution.
+        </p>
+
+        <div class="works-grid">
+
+            <div class="work-card">
+                <div class="work-top">
+                    <i class="fa-regular fa-file-lines"></i>
+                    <span>01</span>
+                </div>
+
+                <h3>Report an Issue</h3>
+
+                <p>
+                    Submit details with description,
+                    photo, and location through our simple form.
+                </p>
+            </div>
+            <div class="work-card">
+                <div class="work-top">
+                    <i class="fa-solid fa-database orange"></i>
+                    <span>02</span>
+                </div>
+
+                <h3>Stored in System</h3>
+
+                <p>
+                    Issue is recorded in a centralized
+                    database for tracking and management.
+                </p>
+            </div>
+
+            <div class="work-card">
+                <div class="work-top">
+                    <i class="fa-regular fa-bell orange"></i>
+                    <span>03</span>
+                </div>
+
+                <h3>Authorities Take Action</h3>
+
+                <p>
+                    Concerned department is automatically
+                    notified and assigned the issue.
+                </p>
+            </div>
+
+            <div class="work-card">
+                <div class="work-top">
+                    <i class="fa-regular fa-circle-check"></i>
+                    <span>04</span>
+                </div>
+
+                <h3>Track & Resolve</h3>
+
+                <p>
+                    Citizen receives real-time updates
+                    until the issue is completely resolved.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FEATURES -->
+
+    <!-- FEATURES -->
+
+<section class="features-section">
+
+    <h2>
+        Powerful <span>Features</span>
+    </h2>
+
+    <p class="section-text">
+        Everything you need to report, track,
+        and resolve civic issues efficiently and transparently.
+    </p>
+
+    <div class="features-grid">
+
+        <!-- CARD 1 -->
+
+        <div class="feature-card">
+            <i class="fa-regular fa-paper-plane"></i>
+
+            <h3>Simple Reporting Form</h3>
+
+            <p>
+                Quick and intuitive form to report
+                any civic issue in just a few clicks.
+            </p>
+        </div>
+
+        <!-- CARD 2 -->
+
+        <div class="feature-card">
+            <i class="fa-solid fa-location-dot"></i>
+
+            <h3>Location & Photo Submissions</h3>
+
+            <p>
+                Add precise location and photos
+                for accurate issue identification and tracking.
+            </p>
+        </div>
+
+        <!-- CARD 3 -->
+
+        <div class="feature-card">
+            <i class="fa-solid fa-chart-line"></i>
+
+            <h3>
+                Real-Time Status Tracking
+            </h3>
+
+            <p>
+                Monitor your report status from pending
+                to resolved with live updates.
+            </p>
+        </div>
+
+        <!-- CARD 4 -->
+
+        <div class="feature-card">
+            <i class="fa-solid fa-user-plus"></i>
+
+            <h3>Admin Dashboard</h3>
+
+            <p>
+                Comprehensive dashboard for authorities
+                to manage and resolve issues efficiently.
+            </p>
+        </div>
+
+        <!-- CARD 5 -->
+
+        <div class="feature-card">
+            <i class="fa-regular fa-bell"></i>
+
+            <h3>Smart Notifications</h3>
+
+            <p>
+                Get instant notifications when your
+                reported issue status changes.
+            </p>
+        </div>
+
+        <!-- CARD 6 -->
+
+        <div class="feature-card">
+            <i class="fa-solid fa-camera"></i>
+
+            <h3>Before & After Proof</h3>
+
+            <p>
+                Visual documentation showing the issue
+                resolution with transparency.
+            </p>
+        </div>
+
+        <!-- CARD 7 -->
+
+        <div class="feature-card">
+            <i class="fa-regular fa-clock"></i>
+
+            <h3>Quick Response Time</h3>
+
+            <p>
+                Automated routing ensures issues
+                reach the right department immediately.
+            </p>
+        </div>
+
+        <!-- CARD 8 -->
+
+        <div class="feature-card">
+            <i class="fa-solid fa-shield"></i>
+
+            <h3>Secure & Reliable</h3>
+
+            <p>
+                Your data is protected with enterprise-grade
+                security and privacy measures.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+</body>
+</html>

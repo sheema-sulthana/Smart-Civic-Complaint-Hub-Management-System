@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contact | ComplaintHub</title>
+
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/contact.css') }}">
+    <script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+        {
+            pageLanguage: 'en',
+            includedLanguages: 'en,hi,te',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        },
+        'google_translate_element'
+    );
+}
+</script>
+
+<script type="text/javascript"
+src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+</script>
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+<header class="navbar">
+
+    <div class="logo-section">
+
+        <div class="logo-icon">
+            📢
+        </div>
+
+        <div>
+
+            <h1>Complaint Hub</h1>
+
+            <p>SMART CIVIC</p>
+
+        </div>
+
+    </div>
+
+    <nav>
+
+        <a href="{{ url_for('home') }}">Home</a>
+
+        <a href="{{ url_for('home') }}#about">About</a>
+
+        <a href="{{ url_for('gallery') }}">Gallery</a>
+
+        <a href="{{ url_for('submit') }}">Report Issue</a>
+
+        <a href="{{ url_for('track') }}">Track Complaints</a>
+
+        <a href="{{ url_for('contact') }}">Contact</a>
+        <div id="google_translate_element"></div>
+
+    </nav>
+
+    <a href="{{ url_for('admin_login') }}" class="admin-btn">
+    Admin Login
+</a>
+
+
+</header>
+    <!-- HERO -->
+
+    <section class="hero">
+
+    <h1>Contact Us</h1>
+
+    <p>
+
+        Get in touch with us for support,
+        questions, or feedback
+
+    </p>
+
+</section>
+
+<section class="contact-container">
+
+    <!-- LEFT -->
+
+    <div class="contact-form">
+
+        <h2>Send us a Message</h2>
+
+        <p>
+
+            Fill out the form below and
+            we'll get back to you
+
+        </p>
+
+        <form action="/submit-feedback" method="POST" class="feedback-form">
+            <label> Name</label>
+
+            <input type="text"
+                   name="name"
+                   placeholder="Enter your full name"
+                   required>
+
+            <input
+    type="tel"
+    id="phone"
+    name="phone"
+    maxlength="10"
+    pattern="[0-9]{10}"
+    placeholder="Enter your 10-digit phone number"
+    required
+>
+            <label>Complaint Category *</label>
+
+                    <select name="category" required>
+                        <option value="">Select Category</option>
+                        <option value="Water Leakage">Water Leakage</option>
+                        <option value="Garbage">Garbage</option>
+                        <option value="Road Damage">Road Damage</option>
+                        <option value="Street Light">Street Light</option>
+                        <option value="Drainage">Drainage</option>
+                        <option value="Electricity">Electricity</option>
+                    </select>
+
+            
+    
+
+            <label>Message</label>
+
+            <div class="voice-input-box">
+
+    <textarea id="messageBox"
+              name="message"
+              placeholder="Tell us how we can help you..."></textarea>
+
+    <button type="button"
+            id="contactVoiceBtn"
+            class="voice-btn">
+
+        🎤 Speak
+
+    </button>
+
+</div>
+            <select name="review" required>
+
+    <option value="">Rate Experience</option>
+
+    <option value="Excellent">⭐⭐⭐⭐⭐ Excellent</option>
+
+    <option value="Good">⭐⭐⭐⭐☆ Good</option>
+
+    <option value="Average">⭐⭐⭐☆☆ Average</option>
+
+    <option value="Poor">⭐⭐☆☆☆ Poor</option>
+
+</select>
+
+            <button type="submit">
+
+                Send Feedback
+
+            </button>
+
+        </form>
+
+    </div>
+
+    <!-- RIGHT -->
+
+    <div class="contact-info">
+
+        <h2>
+
+            Get in touch with us for support,
+            questions, or feedback
+
+        </h2>
+
+        <p>
+
+            We're here to help you with
+            any concerns
+
+        </p>
+
+        <div class="info-box">
+
+            <h3>Support Email</h3>
+
+            <p>support@civicgreen.com</p>
+
+            <span>
+
+                We typically respond
+                within 24 hours
+
+            </span>
+
+        </div>
+
+        <div class="info-box">
+
+            <h3>Phone Support</h3>
+
+            <p>+91 7978538331</p>
+
+            <span>
+
+                Mon-Fri: 9AM-5PM IST
+
+            </span>
+
+        </div>
+
+        <div class="info-box">
+
+            <h3>Office Address</h3>
+
+            <p>
+
+                SRKR Engineering College<br>
+                Bhimavaram<br>
+                Andhra Pradesh
+
+            </p>
+
+        </div>
+
+        <div class="emergency">
+
+            <h3>Emergency Hotline</h3>
+
+            <p>112</p>
+
+            <span>
+
+                For immediate emergencies only
+
+            </span>
+
+        </div>
+
+    </div>
+</section>
+<!-- FAQ SCRIPT -->
+
+<!-- =====================================================
+FAQ SECTION
+===================================================== -->
+
+<section class="faq-section">
+
+    <h1>Frequently Asked Questions</h1>
+
+    <p>
+        Find answers to common questions about our services
+    </p>
+
+    <div class="faq-container">
+
+        <!-- FAQ 1 -->
+
+        <div class="faq-box">
+
+            <button class="faq-question">
+
+                How do I report a civic issue?
+
+                <span>⌄</span>
+
+            </button>
+
+            <div class="faq-answer">
+
+                <p>
+                    You can report civic issues through our online platform by clicking the 'Report Issue' button on our homepage. Simply fill out the form with details about the issue, location, and your contact information.
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- FAQ 2 -->
+
+        <div class="faq-box">
+
+            <button class="faq-question">
+
+                How long does it take to resolve an issue?
+
+                <span>⌄</span>
+
+            </button>
+
+            <div class="faq-answer">
+
+                <p>
+                    Resolution times vary depending on the type and complexity of the issue. Simple issues like potholes are typically resolved within 1-2 weeks, while more complex infrastructure issues may take longer. We provide regular updates on the status of your report.
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- FAQ 3 -->
+
+        <div class="faq-box">
+
+            <button class="faq-question">
+
+                Can I track the progress of my report?
+
+                <span>⌄</span>
+
+            </button>
+
+            <div class="faq-answer">
+
+                <p>
+                    Yes! You can track the progress of your report by visiting the 'View Issues' page on our website. You'll receive a unique issue ID when you submit a report, which you can use to check the current status and any updates.
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- FAQ 4 -->
+
+        <div class="faq-box">
+
+            <button class="faq-question">
+
+                What types of issues can I report?
+
+                <span>⌄</span>
+
+            </button>
+
+            <div class="faq-answer">
+
+                <p>
+                    You can report various civic issues including road problems (potholes, damaged sidewalks), street lighting issues, garbage collection problems, water leaks, traffic signal malfunctions, and other infrastructure concerns within our jurisdiction.
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- FAQ 5 -->
+
+        <div class="faq-box">
+
+            <button class="faq-question">
+
+                Is there a mobile app available?
+
+                <span>⌄</span>
+
+            </button>
+
+            <div class="faq-answer">
+
+                <p>
+                    Our website is fully responsive and works great on mobile devices. We're currently developing a dedicated mobile app that will be available for download in the coming months.
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- FAQ 6 -->
+
+        <div class="faq-box">
+
+            <button class="faq-question">
+
+                How can I contact the mayor's office?
+
+                <span>⌄</span>
+
+            </button>
+
+            <div class="faq-answer">
+
+                <p>
+                    For matters requiring the mayor's attention, you can call our main office at +91 7978538331 or visit our office during business hours. You can also use the contact form above and select 'General Inquiry' as the subject.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+FAQ SCRIPT
+===================================================== -->
+
+<script>
+
+const faqQuestions =
+document.querySelectorAll(".faq-question");
+
+faqQuestions.forEach(question => {
+
+    question.addEventListener("click", () => {
+
+        const answer =
+        question.nextElementSibling;
+
+        const icon =
+        question.querySelector("span");
+
+        if(answer.style.maxHeight){
+
+            answer.style.maxHeight = null;
+
+            icon.style.transform = "rotate(0deg)";
+
+        } else {
+
+            document.querySelectorAll(".faq-answer")
+            .forEach(item => {
+
+                item.style.maxHeight = null;
+
+            });
+
+            document.querySelectorAll(".faq-question span")
+            .forEach(item => {
+
+                item.style.transform = "rotate(0deg)";
+
+            });
+
+            answer.style.maxHeight =
+            answer.scrollHeight + "px";
+
+            icon.style.transform = "rotate(180deg)";
+        }
+
+    });
+
+});
+
+</script>
+<script>
+
+// CONTACT VOICE ASSISTANT
+
+const contactVoiceBtn =
+    document.getElementById("contactVoiceBtn");
+
+const messageBox =
+    document.getElementById("messageBox");
+
+contactVoiceBtn.addEventListener("click", () => {
+
+    const SpeechRecognition =
+        window.SpeechRecognition ||
+        window.webkitSpeechRecognition;
+
+    if(!SpeechRecognition){
+
+        alert("Speech Recognition not supported");
+
+        return;
+    }
+
+    const recognition = new SpeechRecognition();
+
+    recognition.continuous = false;
+
+    recognition.interimResults = false;
+
+    // LANGUAGE DETECTION
+
+    const langCookie = document.cookie;
+
+    if(langCookie.includes("hi")){
+
+        recognition.lang = "hi-IN";
+
+    }
+    else if(langCookie.includes("te")){
+
+        recognition.lang = "te-IN";
+
+    }
+    else{
+
+        recognition.lang = "en-US";
+
+    }
+
+    contactVoiceBtn.innerHTML = "🎙 Listening...";
+
+    recognition.start();
+
+    recognition.onresult = function(event){
+
+        const text =
+            event.results[0][0].transcript;
+
+        messageBox.value += text;
+
+        contactVoiceBtn.innerHTML = "🎤 Speak";
+
+    };
+
+    recognition.onerror = function(){
+
+        contactVoiceBtn.innerHTML = "🎤 Speak";
+
+        alert("Voice recognition failed");
+
+    };
+
+    recognition.onend = function(){
+
+        contactVoiceBtn.innerHTML = "🎤 Speak";
+
+    };
+
+});
+
+</script>
+</body>
+</html>

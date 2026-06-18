@@ -1,0 +1,362 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#eef2f7;
+    overflow-x:hidden;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+
+    width:260px;
+
+    height:100vh;
+
+    background:#1748a5;
+
+    position:fixed;
+
+    left:0;
+    top:0;
+
+    padding:35px 25px;
+
+    overflow-y:auto;
+
+}
+
+/* LOGO */
+
+.logo-section{
+    margin-bottom:65px;
+}
+
+.sidebar h1{
+
+    font-size:28px;
+
+    font-weight:800;
+
+    color:white;
+
+    margin-bottom:8px;
+
+}
+
+.admin-text{
+
+    font-size:13px;
+
+    letter-spacing:4px;
+
+    color:rgba(255,255,255,0.75);
+
+}
+
+/* MENU */
+
+.sidebar ul{
+    list-style:none;
+}
+
+.sidebar ul li{
+    margin-bottom:18px;
+}
+
+.sidebar ul li a{
+
+    display:block;
+
+    padding:15px 20px;
+
+    border-radius:14px;
+
+    text-decoration:none;
+
+    color:white;
+
+    font-size:18px;
+
+    font-weight:500;
+
+    transition:0.3s;
+
+}
+
+.sidebar ul li a:hover{
+
+    background:rgba(255,255,255,0.15);
+
+}
+
+.sidebar ul li a.active{
+
+    background:white;
+
+    color:#1748a5;
+
+    font-weight:700;
+
+}
+.sidebar ul li a.active{
+    background:white;
+    color:#1748a5;
+    font-weight:700;
+}
+
+/* MAIN CONTENT */
+
+.main-content{
+
+    margin-left:260px;
+
+    width:calc(100% - 260px);
+
+    padding:30px;
+
+}
+/* PAGE HEADER */
+
+.page-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.page-header h1{
+    font-size:56px;
+    font-weight:800;
+    color:#0f172a;
+}
+
+.back-btn{
+    text-decoration:none;
+    color:#1748a5;
+    font-size:18px;
+    font-weight:600;
+}
+
+/* MAIN CARD */
+
+.complaint-view-card{
+    background:white;
+    border-radius:22px;
+    padding:18px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.08);
+    max-width:820px;
+    margin:auto;
+}
+
+/* IMAGE */
+
+/* IMAGE */
+
+.complaint-image-wrapper{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.complaint-img{
+    width:100%;
+    max-width:760px;
+    height:260px;
+    object-fit:cover;
+    border-radius:18px;
+    display:block;
+    box-shadow:0 4px 12px rgba(0,0,0,0.08);
+}
+/* BADGES */
+
+.badges{
+    display:flex;
+    gap:12px;
+    margin-bottom:18px;
+}
+
+.status-badge,
+.priority-badge{
+    padding:10px 18px;
+    border-radius:30px;
+    color:white;
+    font-weight:600;
+    font-size:14px;
+}
+
+.pending{
+    background:#f59e0b;
+}
+
+.progress{
+    background:#2196f3;
+}
+
+.resolved{
+    background:#22c55e;
+}
+
+.high{
+    background:#ef4444;
+}
+
+.medium{
+    background:#f59e0b;
+}
+
+.low{
+    background:#22c55e;
+}
+
+/* TITLE */
+
+.complaint-details h1{
+    font-size:34px;
+    font-weight:800;
+    color:#0f172a;
+    margin-bottom:18px;
+}
+
+/* INFO BOX */
+
+.detail-box{
+    background:#f8fafc;
+    padding:20px;
+    border-radius:18px;
+    margin-bottom:16px;
+}
+
+.detail-box h2{
+    font-size:20px;
+    font-weight:700;
+    margin-bottom:16px;
+    color:#0f172a;
+}
+
+.detail-box p{
+    font-size:15px;
+    color:#334155;
+    margin-bottom:10px;
+    line-height:1.5;
+}
+
+.detail-box strong{
+    color:#000;
+}
+
+/* BUTTONS */
+
+.action-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-top:18px;
+}
+
+.action-buttons a{
+    text-decoration:none;
+    padding:12px 22px;
+    border-radius:14px;
+    color:white;
+    font-size:16px;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.map-btn{
+    background:#14b8a6;
+}
+
+.pending-btn{
+    background:#f59e0b;
+}
+
+.progress-btn{
+    background:#2196f3;
+}
+
+.resolved-btn{
+    background:#22c55e;
+}
+
+.delete-btn{
+    background:#ef4444;
+}
+
+.action-buttons a:hover{
+    transform:translateY(-2px);
+    opacity:0.9;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1200px){
+
+    .sidebar{
+        width:280px;
+    }
+
+    .main-content{
+        margin-left:280px;
+    }
+
+    .page-header h1{
+        font-size:44px;
+    }
+}
+
+@media(max-width:768px){
+
+    .sidebar{
+        width:100%;
+        height:auto;
+        position:relative;
+    }
+
+    .main-content{
+        margin-left:0;
+        padding:18px;
+    }
+
+    .page-header{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:10px;
+    }
+
+    .page-header h1{
+        font-size:34px;
+    }
+
+    .complaint-view-card{
+        padding:15px;
+    }
+
+    .complaint-image img{
+        width:100%;
+        height:220px;
+    }
+
+    .complaint-details h1{
+        font-size:28px;
+    }
+
+    .action-buttons{
+        flex-direction:column;
+    }
+
+    .action-buttons a{
+        width:100%;
+        text-align:center;
+    }
+}

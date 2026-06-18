@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>All Complaints</title>
+
+    <!-- GOOGLE FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/complaints.css') }}">
+
+</head>
+<body>
+
+    <!-- SIDEBAR -->
+
+<div class="sidebar">
+
+    <div class="logo-section">
+
+        <h1 style="font-size:x-large;">Complaint Hub</h1>
+
+        <p class="admin-text">ADMIN DASHBOARD</p>
+
+    </div>
+
+    <ul>
+
+        <li><a href="/admin-dashboard">Dashboard</a></li>
+<li><a href="/admin/complaints" class="active">Complaints</a></li>
+
+        <li>
+
+            <a href="/admin/analytics">
+
+                Analytics
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="/admin/feedbacks">
+
+                Feedbacks
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="/admin/logout">
+
+                Logout
+
+            </a>
+
+        </li>
+
+    </ul>
+
+</div>
+    <!-- MAIN CONTENT -->
+
+    <div class="main-content">
+
+        <!-- PAGE TITLE -->
+
+        <div class="page-title">
+
+            <h1>All Complaints</h1>
+
+            <p>
+                View and manage all registered complaints
+            </p>
+
+        </div>
+
+        <!-- TABLE -->
+
+        <div class="table-container">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>ID</th>
+
+                        <th>Name</th>
+
+                        <th>Phone</th>
+
+                        <th>Category</th>
+
+                        <th>Area</th>
+
+                        <th>Status</th>
+
+                        <th>Priority</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+    {% for complaint in complaints %}
+
+    <tr>
+
+        <!-- ID -->
+        <td>
+            #{{ complaint[0] }}
+        </td>
+
+        <!-- NAME -->
+        <td>
+            {{ complaint[1] }}
+        </td>
+
+        <!-- PHONE -->
+        <td>
+            {{ complaint[2] }}
+        </td>
+
+        <!-- CATEGORY -->
+        <td>
+            {{ complaint[3] }}
+        </td>
+
+        <!-- AREA -->
+        <td>
+            {{ complaint[6] }}
+        </td>
+
+        <!-- STATUS -->
+        <td>
+
+            {% if complaint[8] == "Pending" %}
+
+                <span class="status pending-status">
+                    Pending
+                </span>
+
+            {% elif complaint[8] == "In Progress" %}
+
+                <span class="status progress-status">
+                    In Progress
+                </span>
+
+            {% elif complaint[8] == "Resolved" %}
+
+                <span class="status resolved-status">
+                    Resolved
+                </span>
+
+            {% else %}
+
+                <span class="status pending-status">
+                    {{ complaint[8] }}
+                </span>
+
+            {% endif %}
+
+        </td>
+
+        <!-- PRIORITY -->
+        <td>
+
+            {% if complaint[9] == "High" %}
+
+                <span class="priority high-priority">
+                    High
+                </span>
+
+            {% elif complaint[9] == "Medium" %}
+
+                <span class="priority medium-priority">
+                    Medium
+                </span>
+
+            {% elif complaint[9] == "Low" %}
+
+                <span class="priority low-priority">
+                    Low
+                </span>
+
+            {% else %}
+
+                <span class="priority low-priority">
+                    {{ complaint[9] }}
+                </span>
+
+            {% endif %}
+
+        </td>
+
+        <!-- ACTION -->
+        <td>
+
+            <a href="/complaint/{{ complaint[0] }}"
+               class="view-btn">
+
+                View
+
+            </a>
+
+        </td>
+
+    </tr>
+
+    {% endfor %}
+
+</tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

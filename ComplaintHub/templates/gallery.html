@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ComplaintHub | Gallery</title>
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/gallery.css') }}">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        <script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+        {
+            pageLanguage: 'en',
+            includedLanguages: 'en,hi,te',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        },
+        'google_translate_element'
+    );
+}
+</script>
+
+<script type="text/javascript"
+src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+</script>
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+       <header class="navbar">
+
+    <div class="logo-section">
+
+        <div class="logo-icon">
+            📢
+        </div>
+
+        <div>
+
+            <h1>Complaint Hub</h1>
+
+            <p>SMART CIVIC</p>
+
+        </div>
+
+    </div>
+
+    <nav>
+
+        <a href="{{ url_for('home') }}">Home</a>
+
+        <a href="{{ url_for('home') }}#about">About</a>
+
+        <a href="{{ url_for('gallery') }}">Gallery</a>
+
+        <a href="{{ url_for('submit') }}">Report Issue</a>
+
+        <a href="{{ url_for('track') }}">Track Complaints</a>
+
+        <a href="{{ url_for('contact') }}">Contact</a>
+        <div id="google_translate_element"></div>
+
+    </nav>
+
+    <a href="{{ url_for('admin_login') }}" class="admin-btn">
+    Admin Login
+</a>
+
+
+</header>
+    <!-- ================= HERO ================= -->
+
+    <section class="gallery-hero">
+
+        <h1>Resolved Issues Gallery</h1>
+
+        <p>
+            Browse through the before-and-after photos of issues
+            successfully resolved by our community and authorities.
+        </p>
+
+    </section>
+
+    <!-- ================= VISUAL SECTION ================= -->
+
+    <section class="section-title">
+
+        <h2>
+            Visual Proof of
+            <span>Resolution</span>
+        </h2>
+
+        <p>
+            See the tangible impact of your reports with these
+            compelling before and after transformations.
+        </p>
+
+    </section>
+
+    <!-- ================= BIG IMAGE ================= -->
+
+    <div class="big-gallery">
+
+        <img src="{{ url_for('static', filename='images/main.jpeg') }}"
+                    alt="Lake Cleaning">
+    </div>
+
+    <!-- ================= RECENT SECTION ================= -->
+
+    <section class="recent-section">
+
+        <div class="recent-heading">
+
+            <h2>
+                Recently
+                <span>Completed Issues</span>
+            </h2>
+
+            <p>
+                A showcase of the latest issues to be resolved
+                by our dedicated city staff.
+            </p>
+
+        </div>
+
+        <div class="issue-grid">
+
+            <!-- CARD 1 -->
+
+            <div class="issue-card">
+
+                <img src="{{ url_for('static', filename='images/pic1.jpeg') }}"
+                    alt="Pothole">
+
+                <div class="issue-content">
+
+                    <h3>Potholes Repaired</h3>
+
+                    <p>
+                        A series of potholes on Main Street were
+                        successfully filled and the road surface
+                        was made safe for commuters.
+                    </p>
+
+                    <div class="issue-meta">
+                        <strong>Area:</strong> Parameshwari Nagar  |
+                        <strong>Date:</strong> 2026-05-21
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- CARD 2 -->
+
+            <div class="issue-card">
+
+                <img src="{{ url_for('static', filename='images/pic2.jpeg') }}"
+                    alt="Trash Pickup">
+
+                <div class="issue-content">
+
+                    <h3>Trash Pickup Completed</h3>
+
+                    <p>
+                        A large accumulation of garbage in the park
+                        was cleared, restoring the area for public
+                        use and recreation.
+                    </p>
+
+                    <div class="issue-meta">
+                        <strong>Area:</strong> Parameshwari Nagar |
+                        <strong>Date:</strong> 2026-05-30
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- CARD 3 -->
+
+            <div class="issue-card">
+
+                <img src="{{ url_for('static', filename='images/pic3.jpeg') }}"
+                    alt="Lake Cleaning">
+
+                <div class="issue-content">
+
+                    <h3>Lake Clearance</h3>
+
+                    <p>
+                        Algae and debris were removed from the city
+                        lake, significantly improving water quality
+                        and visual aesthetics.
+                    </p>
+
+                    <div class="issue-meta">
+                        <strong>Area:</strong> Nellore Tank(cheruvu)|
+                        <strong>Date:</strong> 2026-06-02
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</body>
+
+</html>

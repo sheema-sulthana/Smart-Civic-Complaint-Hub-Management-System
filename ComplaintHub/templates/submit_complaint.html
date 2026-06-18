@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title>Report Issue | ComplaintHub</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/report.css') }}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+          <script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement(
+        {
+            pageLanguage: 'en',
+            includedLanguages: 'en,hi,te',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+        },
+        'google_translate_element'
+    );
+}
+</script>
+
+<script type="text/javascript"
+src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+</script>
+</head>
+
+<body>
+
+<div class="report-container">
+
+    <!-- LEFT SIDE -->
+    <div class="report-left">
+
+        <div class="top-header">
+
+    <div class="top-heading">
+        <h1>Report an Issue</h1>
+        <p>Submit your complaint in 3 simple steps</p>
+    </div>
+
+    <a href="/" class="home-btn">
+        <i class="fa-solid fa-house"></i>
+        Back To Home
+    </a>
+
+</div>
+
+        <form action="/submit"
+              method="POST"
+              enctype="multipart/form-data"
+              id="complaintForm">
+
+            <!-- STEP INDICATOR -->
+            <div class="steps-wrapper">
+
+                <div class="step active">
+                    <div class="step-icon">
+                        <i class="fa-regular fa-user"></i>
+                    </div>
+                    <p>User Details</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fa-regular fa-file-lines"></i>
+                    </div>
+                    <p>Problem Details</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <p>Location & Photo</p>
+                </div>
+
+            </div>
+
+            <!-- ================= STEP 1 ================= -->
+
+            <div class="form-step active-step">
+
+                <div class="form-group">
+                    <label>Full Name *</label>
+
+                    <input type="text"
+                           name="name"
+                           placeholder="Enter your full name"
+                           required>
+                </div>
+
+                <div class="form-group">
+                    <label>Phone Number *</label>
+
+                    <input
+    type="tel"
+    id="phone"
+    name="phone"
+    maxlength="10"
+    pattern="[0-9]{10}"
+    placeholder="Enter your 10-digit phone number"
+    required
+>
+                </div>
+
+
+                <div class="button-group next-only">
+                    <button type="button" class="next-btn">
+                        Next
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- ================= STEP 2 ================= -->
+
+            <div class="form-step">
+
+                <div class="form-group">
+                    <label>Complaint Category *</label>
+
+                    <select name="category" required>
+                        <option value="">Select Category</option>
+                        <option value="Water Leakage">Water Leakage</option>
+                        <option value="Garbage">Garbage</option>
+                        <option value="Road Damage">Road Damage</option>
+                        <option value="Street Light">Street Light</option>
+                        <option value="Drainage">Drainage</option>
+                        <option value="Electricity">Electricity</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Priority *</label>
+
+                    <select name="priority" required>
+                        <option value="">Select Priority</option>
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+
+    <label>Description *</label>
+
+    <div class="voice-input-box">
+
+        <textarea id="description"
+                  name="description"
+                  rows="7"
+                  placeholder="Explain the issue in detail..."
+                  required></textarea>
+
+        <button type="button"
+                id="voiceBtn"
+                class="voice-btn">
+
+            🎤 Speak
+
+        </button>
+
+    </div>
+
+</div>
+
+                <div class="button-group">
+                    <button type="button" class="prev-btn">
+                        Previous
+                    </button>
+
+                    <button type="button" class="next-btn">
+                        Next
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- ================= STEP 3 ================= -->
+
+            <div class="form-step">
+
+                <div class="location-photo-grid">
+
+                    <!-- LOCATION -->
+                    <div class="side-card">
+
+                        <div class="side-icon">
+                            <i class="fa-solid fa-location-crosshairs"></i>
+                        </div>
+
+                        <h2>Use Live Location</h2>
+
+                        <p>Detect your current location automatically.</p>
+
+                        <button type="button"
+                                class="detect-btn"
+                                onclick="getLocation()">
+
+                            Detect Location
+                        </button>
+
+                        <div class="location-result">
+
+                            <p>
+                                <strong>Latitude:</strong>
+                                <span id="latitudeText">Not detected</span>
+                            </p>
+
+                            <p>
+                                <strong>Longitude:</strong>
+                                <span id="longitudeText">Not detected</span>
+                            </p>
+
+                        </div>
+
+                        <input type="hidden" name="location" id="locationInput">
+
+<div class="form-group area-group">
+
+    <label>Area / Address *</label>
+
+    <input type="text"
+           name="area"
+           placeholder="Enter your area, street or address"
+           required>
+
+</div>
+
+                    </div>
+
+                    <!-- IMAGE -->
+                    <div class="side-card">
+
+                        <div class="side-icon">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                        </div>
+
+                        <h2>Upload Evidence Photo</h2>
+
+                        <p>Upload image related to the issue</p>
+
+                        <input type="file"
+                               name="photo"
+                               accept="image/*"
+                               id="photoInput">
+
+                        <img id="previewImage" class="preview-image">
+
+                    </div>
+
+                </div>
+
+                <div class="button-group">
+
+                    <button type="button" class="prev-btn">
+                        Previous
+                    </button>
+
+                    <button type="submit" class="submit-btn">
+
+                        Submit Complaint
+                        <i class="fa-solid fa-paper-plane"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script>
+
+    const steps = document.querySelectorAll(".step");
+    const formSteps = document.querySelectorAll(".form-step");
+
+    let currentStep = 0;
+
+    // NEXT BUTTONS
+    // NEXT BUTTONS
+document.querySelectorAll(".next-btn").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        // STEP 1 VALIDATION
+
+        if (currentStep === 0) {
+
+            const name =
+                document.querySelector(
+                    'input[name="name"]'
+                ).value.trim();
+
+            const phone =
+                document.getElementById("phone")
+                .value.trim();
+
+            if (name === "") {
+
+                alert("Please enter your full name.");
+
+                return;
+            }
+
+            if (!/^[0-9]{10}$/.test(phone)) {
+
+                alert(
+                    "Please enter a valid 10-digit mobile number."
+                );
+
+                return;
+            }
+        }
+
+        // STEP 2 VALIDATION
+
+        if (currentStep === 1) {
+
+            const category =
+                document.querySelector(
+                    'select[name="category"]'
+                ).value;
+
+            const priority =
+                document.querySelector(
+                    'select[name="priority"]'
+                ).value;
+
+            const description =
+                document.getElementById(
+                    "description"
+                ).value.trim();
+
+            if (category === "") {
+
+                alert(
+                    "Please select a complaint category."
+                );
+
+                return;
+            }
+
+            if (priority === "") {
+
+                alert(
+                    "Please select complaint priority."
+                );
+
+                return;
+            }
+
+            if (description === "") {
+
+                alert(
+                    "Please enter complaint description."
+                );
+
+                return;
+            }
+        }
+
+        if (currentStep < formSteps.length - 1) {
+
+            formSteps[currentStep]
+                .classList.remove("active-step");
+
+            steps[currentStep]
+                .classList.remove("active");
+
+            currentStep++;
+
+            formSteps[currentStep]
+                .classList.add("active-step");
+
+            steps[currentStep]
+                .classList.add("active");
+        }
+
+    });
+
+});
+
+    // PREVIOUS BUTTONS
+    document.querySelectorAll(".prev-btn").forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            if (currentStep > 0) {
+
+                formSteps[currentStep].classList.remove("active-step");
+                steps[currentStep].classList.remove("active");
+
+                currentStep--;
+
+                formSteps[currentStep].classList.add("active-step");
+                steps[currentStep].classList.add("active");
+            }
+
+        });
+
+    });
+
+    // LOCATION
+    function getLocation() {
+
+        if (navigator.geolocation) {
+
+            navigator.geolocation.getCurrentPosition(showPosition);
+
+        } else {
+
+            alert("Geolocation is not supported.");
+
+        }
+
+    }
+
+    function showPosition(position) {
+
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+
+        document.getElementById("latitudeText").innerText = latitude;
+        document.getElementById("longitudeText").innerText = longitude;
+
+        const mapLink = latitude + "," + longitude;
+
+document.getElementById("locationInput").value = mapLink;
+    }
+
+    // IMAGE PREVIEW
+    const photoInput = document.getElementById("photoInput");
+    const previewImage = document.getElementById("previewImage");
+
+    photoInput.addEventListener("change", function () {
+
+        const file = this.files[0];
+
+        if (file) {
+
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+
+                previewImage.src = e.target.result;
+                previewImage.style.display = "block";
+            };
+
+            reader.readAsDataURL(file);
+
+        }
+
+    });
+
+photoInput.addEventListener("change", function () {
+
+    const file = this.files[0];
+
+    if (file) {
+
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+
+            previewImage.src = e.target.result;
+            previewImage.style.display = "block";
+        };
+
+        reader.readAsDataURL(file);
+
+    }
+
+});
+
+
+// ================= VOICE ASSISTANT =================
+
+const voiceBtn = document.getElementById("voiceBtn");
+
+const descriptionBox =
+    document.getElementById("description");
+
+voiceBtn.addEventListener("click", () => {
+
+    const SpeechRecognition =
+        window.SpeechRecognition ||
+        window.webkitSpeechRecognition;
+
+    if(!SpeechRecognition){
+
+        alert("Speech Recognition not supported");
+
+        return;
+    }
+
+    const recognition = new SpeechRecognition();
+
+    recognition.continuous = false;
+
+    recognition.interimResults = false;
+
+    // LANGUAGE DETECTION
+
+    const langCookie = document.cookie;
+
+    if(langCookie.includes("hi")){
+
+        recognition.lang = "hi-IN";
+
+    }
+    else if(langCookie.includes("te")){
+
+        recognition.lang = "te-IN";
+
+    }
+    else{
+
+        recognition.lang = "en-US";
+
+    }
+
+    voiceBtn.innerHTML = "🎙 Listening...";
+
+    recognition.start();
+
+    recognition.onresult = function(event){
+
+        const text =
+            event.results[0][0].transcript;
+
+        descriptionBox.value += text;
+
+        voiceBtn.innerHTML = "🎤 Speak";
+
+    };
+
+    recognition.onerror = function(){
+
+        voiceBtn.innerHTML = "🎤 Speak";
+
+        alert("Voice recognition failed");
+
+    };
+
+    recognition.onend = function(){
+
+        voiceBtn.innerHTML = "🎤 Speak";
+
+    };
+
+});
+
+</script>
+
+</body>
+</html>

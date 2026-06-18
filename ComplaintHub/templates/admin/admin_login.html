@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Login</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin_login.css') }}">
+
+</head>
+
+<body>
+
+<div class="login-container">
+
+    <!-- LEFT SIDE -->
+    <div class="login-left">
+
+        <div class="admin-brand">
+            <h1>Complaint Hub</h1>
+            <p>SMART CIVIC ADMIN PANEL</p>
+        </div>
+
+        <div class="admin-image-box">
+            <img src="{{ url_for('static', filename='images/admin.png') }}" alt="">
+        </div>
+
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="login-right">
+
+        <div class="login-box">
+
+            <h2>Welcome Back 👋</h2>
+
+            <p>Login to continue</p>
+
+            <form method="POST">
+
+                <input type="text"
+                       name="username"
+                       placeholder="Enter Username"
+                       required>
+
+                <input type="password"
+                       name="password"
+                       placeholder="Enter Password"
+                       required>
+
+                <button type="submit" class="login-btn">
+                    Login
+                </button>
+
+            </form>
+
+            <a href="/" class="back-home-link">
+                ← Back to Home
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

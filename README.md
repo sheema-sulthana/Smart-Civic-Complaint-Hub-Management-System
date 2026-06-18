@@ -298,7 +298,7 @@ ComplaintHub/
 
 ## Clone Repository
 
-git clone https://github.com/sheema-sulthana/ComplaintHub.git
+git clone https://github.com/sheema-sulthana/Smart-Civic-Complaint-Hub-Management-System.git
 
 cd ComplaintHub
 
